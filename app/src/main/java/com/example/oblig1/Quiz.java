@@ -102,4 +102,16 @@ public class Quiz extends BaseActivity {
         });
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public Image getCurrentImage(){
+        return this.currentImage;
+    }
+
 }

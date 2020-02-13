@@ -26,6 +26,11 @@ public class Image {
 
     public Image(){}
 
+    public Image(String name, Bitmap bitmap){
+        this.name = name;
+        setEncodedImage(bitmap);
+    }
+
     public String getName() {
         return name;
     }

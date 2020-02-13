@@ -75,6 +75,7 @@ public class Database extends BaseActivity {
                 super.onPostExecute(numDeleted);
                 if (numDeleted > 0){
                     adapter.remove(toBeRemoved);
+                    images.remove(toBeRemoved);
                     Toast.makeText(Database.this, "You deleted " +toBeRemoved.getName()+ " from the database", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(Database.this, "Something went wrong, try again later", Toast.LENGTH_SHORT).show();
@@ -136,7 +137,9 @@ public class Database extends BaseActivity {
         allImagesFromDb();
     }
 
-
+    public int getCount(){
+        return images.size();
+    }
 
 
 }

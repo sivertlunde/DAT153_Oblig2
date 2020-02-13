@@ -19,4 +19,7 @@ public interface ImageDao {
 
     @Query("SELECT * FROM image WHERE imageId NOT LIKE :previousId ORDER BY RANDOM() LIMIT 1;")
     Image getRandomImage(int previousId);
+
+    @Query("DELETE FROM image")
+    void nukeTable();
 }

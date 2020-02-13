@@ -35,3 +35,11 @@ ext {
     coreTestingVersion = '2.1.0'
     materialVersion = '1.0.0'
 }
+
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
+}

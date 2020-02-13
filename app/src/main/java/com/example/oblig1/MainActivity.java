@@ -1,13 +1,10 @@
 package com.example.oblig1;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
@@ -15,11 +12,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
 public class MainActivity extends BaseActivity {
 
     private String m_Text = "";
     private ImageRepository repo;
-    private boolean dbIsEmpty;
+    public static Boolean dbIsEmpty = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +57,8 @@ public class MainActivity extends BaseActivity {
     private void checkPreferences(){
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("sharedPreferences", 0);
         Editor editor = sharedPref.edit();
-        //editor.remove("Owner");
-        //editor.commit();
+//        editor.remove("Owner");
+//        editor.commit();
         String owner = sharedPref.getString("Owner", null);
         if (owner == null){
             inputName(editor);
@@ -71,6 +70,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @SuppressLint("ResourceType")
     private void inputName(Editor editor){
         final Editor e2 = editor;
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -79,6 +79,7 @@ public class MainActivity extends BaseActivity {
         builder.setMessage("Please enter your name");
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setId(999);
         builder.setView(input);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -91,7 +92,7 @@ public class MainActivity extends BaseActivity {
         builder.show();
     }
 
-    private void checkDb(){
+    public void checkDb(){
 
         class GetImage extends AsyncTask<Void, Void, Image> {
 
@@ -114,5 +115,6 @@ public class MainActivity extends BaseActivity {
         GetImage gi = new GetImage();
         gi.execute();
     }
+
 
 }
